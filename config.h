@@ -16,8 +16,8 @@ static int swallowfloating    = 0;        /* 1 means swallow floating windows by
 static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "JetBrainsMonoNL-Light:size=11", "NotoColorEmoji:pixelsize=22:antialias=true:autohint=true"  };
-static const char dmenufont[]      = "JetBrainsMonoNL-Light:size=11:antialias=true:autohint=true";
+static char *fonts[]          = { "Source Code Pro:size=12", "fonts-noto-color-emoji:pixelsize=22:antialias=true:autohint=true"  };
+static const char dmenufont[]      = "Source Code Pro:size=12:antialias=true:autohint=true";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -31,9 +31,9 @@ static char *colors[][3] = {
 };
 
 /*audio constants*/
-static const char *upvol[]      = { "/home/aaron/.scripts/dwm/set_volume", "up",    NULL };
-static const char *downvol[]    = { "/home/aaron/.scripts/dwm/set_volume", "down",    NULL };
-static const char *mutevol[]    = { "/home/aaron/.scripts/dwm/set_volume", "mute", NULL };
+static const char *upvol[]      = { "/home/aaron/.scripts/dwm/set_volume.sh", "up",    NULL };
+static const char *downvol[]    = { "/home/aaron/.scripts/dwm/set_volume.sh", "down",    NULL };
+static const char *mutevol[]    = { "/home/aaron/.scripts/dwm/set_volume.sh", "mute", NULL };
 static const char *updateaudio[] = { "/home/aaron/.scripts/dwm/update_volume.sh	", NULL };
 
 
@@ -51,7 +51,7 @@ static const char *lockcmd[] = {"slock", NULL};
  * screenshot
  */
 static const char *screenshot[] = {"scrot", "/home/aaron/shared/pics/screenshots/%Y-%m-%d-%T-screenshot.jpg", NULL};
-static const char *screenshotselect[] = {"xfce4-screenshooter", NULL};
+static const char *screenshotselect[] = {"/home/aaron/.scripts/take_flameshot.sh", NULL};
 
 /*
  * commands
