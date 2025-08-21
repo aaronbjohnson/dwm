@@ -14,15 +14,16 @@ static unsigned int gappoh    = 10;       /* horiz outer gap between windows and
 static unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
 static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static int showbar            = 1;        /* 0 means no bar */
-static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "Source Code Pro:size=12", "fonts-noto-color-emoji:pixelsize=22:antialias=true:autohint=true"  };
-static const char dmenufont[]      = "Source Code Pro:size=12:antialias=true:autohint=true";
+static int showbar            = 0;        /* 0 means no bar */
+static int topbar             = 0;        /* 0 means bottom bar */
+static char *fonts[]          = { "BerkeleyMono-Regular:size=12", 
+  "fonts-noto-color-emoji:pixelsize=22:antialias=true:autohint=true"  };
+static const char dmenufont[]      = "BerkeleyMono-Regular:size=22:antialias=true:autohint=true";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#9173d9";
+static char selbordercolor[]        = "#CD3838";
 static char selbgcolor[]            = "#222222";
 static char *colors[][3] = {
        /*               fg           bg           border   */
@@ -52,6 +53,11 @@ static const char *lockcmd[] = {"slock", NULL};
  */
 static const char *screenshot[] = {"scrot", "/home/aaron/shared/pics/screenshots/%Y-%m-%d-%T-screenshot.jpg", NULL};
 static const char *screenshotselect[] = {"/home/aaron/.scripts/take_flameshot.sh", NULL};
+
+/*
+ * status report (for barless setup)
+ */
+static const char *statusreport[] = {"/home/aaron/.scripts/dwm/status-report", NULL};
 
 /*
  * commands
@@ -245,7 +251,8 @@ static Key keys[] = {
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_n,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } },
+	{ MODKEY,			XK_n,		spawn,		{.v = statusreport } },
+/*	{ MODKEY,			XK_n,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } },*/
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		{.v = screenshotselect } },
 	{ MODKEY,			XK_m,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
 	{ MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
