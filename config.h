@@ -3,8 +3,8 @@
 /* Aaron's DWM config — updated from original                         */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "kitty"
+#define TERMCLASS "kitty"
 #define BROWSER "firefox"
 
 /* appearance */
@@ -99,11 +99,16 @@ static const Rule rules[] = {
 	 */
 	/* class     instance      title            tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,         NULL,            1 << 8,    0,          0,          0,         -1 },
+  { "Emacs",               NULL,     NULL,  1 << 1,    0,          0,          0,         -1 },
+	{ "org.mozilla.firefox", NULL,     NULL,  1 << 4,    0,          0,          0,         -1 },
+	{ "Nemo",                NULL,     NULL,  1 << 3,    0,          0,          0,         -1 },
+	{ "thunderbird",         NULL,     NULL,  1 << 2,    0,          0,          0,         -1 },
 	{ TERMCLASS, NULL,         NULL,            0,         0,          1,          0,         -1 },
 	{ NULL,      NULL,         "Event Tester",  0,         0,          0,          1,         -1 },
 	{ TERMCLASS, "bg",         NULL,            1 << 7,    0,          1,          0,         -1 },
 	{ TERMCLASS, "spterm",     NULL,            SPTAG(0),  1,          1,          0,         -1 },
 	{ TERMCLASS, "spcalc",     NULL,            SPTAG(1),  1,          1,          0,         -1 },
+  { "nib",     NULL,         NULL,            1 << 1,    0,          0,          1,         -1 },
 };
 
 /* layout(s) */
@@ -208,7 +213,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XK_q,		quit,		{0} },
 	{ MODKEY,		XK_w,		spawn,		{.v = (const char*[]){ BROWSER, NULL } } },
 	{ MODKEY|ShiftMask,	XK_w,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } },
-	{ MODKEY,		XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "lfub", NULL } } },
+	{ MODKEY,		XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "ranger", NULL } } },
 	{ MODKEY|ShiftMask,	XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
 	{ MODKEY,		XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
 	{ MODKEY|ShiftMask,	XK_t,		setlayout,	{.v = &layouts[1]} }, /* bstack */
@@ -304,6 +309,9 @@ static Key keys[] = {
 
 
 	{ 0, XF86XK_AudioMicMute,	spawn,	SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+
+/* Mouse toggle dpi */
+  { MODKEY|ShiftMask, XK_x, spawn, {.v = (const char*[]){ "/home/aaron/.scripts/dwm/mouse-precision.sh", NULL } } },
 
 
 	/* ── Media playback ─────────────────────────────────────────────────── */
