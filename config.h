@@ -34,7 +34,7 @@ static char normbgcolor[]     = "#0e0e0e";
 static char normbordercolor[] = "#1a2a1a";
 static char normfgcolor[]     = "#c8cfc4";
 static char selfgcolor[]      = "#6db36d";
-static char selbordercolor[]  = "#c8a84a";
+static char selbordercolor[]  = "#ff4444";
 static char selbgcolor[]      = "#0a150a";
 static char *colors[][3] = {
 	/*               fg           bg           border   */
@@ -211,6 +211,7 @@ static Key keys[] = {
 	{ MODKEY,		XK_Tab,		view,		{0} },
 	{ MODKEY,		XK_q,		killclient,	{0} },
 	{ MODKEY|ShiftMask,	XK_q,		quit,		{0} },
+  { MODKEY|ControlMask,	XK_q,		quit,		{.i = 1} },
 	{ MODKEY,		XK_w,		spawn,		{.v = (const char*[]){ BROWSER, NULL } } },
 	{ MODKEY|ShiftMask,	XK_w,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } },
 	{ MODKEY,		XK_r,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "ranger", NULL } } },
