@@ -351,6 +351,24 @@ static xcb_connection_t *xcon;
 /* configuration, allows nested code to access above variables */
 #include "config.h"
 
+
+static void
+loadfontsize(void)
+{
+	const char *env = getenv("DWM_FONTSIZE");
+	int size = env ? atoi(env) : 11;
+	if (size <= 0) size = 11;
+
+	const char *dmenuenv = getenv("DWM_DMENU_FONTSIZE");
+	int dsize = dmenuenv ? atoi(dmenuenv) : size + 2;
+	if (dsize <= 0) dsize = 13;
+
+	snprintf(fontbuf, sizeof(fontbuf), "BerkeleyMono-Regular:size=%d", size);
+	snprintf(fontfallbackbuf, sizeof(fontfallbackbuf), "monospace:size=%d", size);
+	snprintf(dmenufont, sizeof(dmenufont),
+	         "BerkeleyMono-Regular:size=%d:antialias=true:autohint=true", dsize);
+}
+
 /* compile-time check if all tags fit into an unsigned int bit array. */
 struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
 
@@ -1859,6 +1877,7 @@ setup(void)
 	sh = DisplayHeight(dpy, screen);
 	root = RootWindow(dpy, screen);
 	drw = drw_create(dpy, screen, root, sw, sh);
+	loadfontsize();
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
